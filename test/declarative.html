@@ -22,6 +22,10 @@
         <qn-answer>Ringo</qn-answer>
         <qn-answer correct>Yoko</qn-answer>
       </qn-question>
+
+      <qn-question type="openended">
+        <qn-prompt>What is your opinion of the color green?</qn-prompt>
+      </qn-question>
     </qz-questions>
 
   </quiz-maker>
@@ -46,7 +50,7 @@
 
           // Now let's look at the questions.
           expect(fixture.quiz.questions).to.exist;
-          expect(fixture.quiz.questions.length).to.equal(1);
+          expect(fixture.quiz.questions.length).to.equal(2);
 
           expect(fixture.quiz.questions[0]).to.deep.equal({
             type: 'multichoice',
@@ -59,6 +63,11 @@
               "Yoko"
             ],
             correct: [2, 4]
+          });
+
+          expect(fixture.quiz.questions[1]).to.deep.equal({
+            type: 'openended',
+            prompt: 'What is your opinion of the color green?'
           });
 
         });

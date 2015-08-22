@@ -12,9 +12,7 @@
 
     _introspect: function() {
       var question = {
-        type: this.type,
-        answers: [],
-        correct: []
+        type: this.type
       };
       var root = Polymer.dom(this);
 
@@ -23,10 +21,15 @@
         question.prompt = $prompt.innerHTML;
       }
 
-      _.forEach(root.querySelectorAll('qn-answer'), function(answer, index) {
-        question.answers.push(answer._introspect());
-        if (answer.correct) question.correct.push(index);
-      });
+      if (this.type == 'multichoice') {
+        question.answers = [];
+        question.correct = [];
+
+        _.forEach(root.querySelectorAll('qn-answer'), function(answer, index) {
+          question.answers.push(answer._introspect());
+          if (answer.correct) question.correct.push(index);
+        });
+      }
 
       return question;
     }
