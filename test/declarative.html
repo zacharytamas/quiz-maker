@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../quiz-maker.html">
+  <link rel="import" href="../quiz-declarative.html">
+</head>
+<body>
+
+  <quiz-maker id="fixture1">
+
+    <qz-title>My quiz title.</qz-title>
+
+    <qz-questions>
+      <qn-question type="multichoice">
+        <qn-prompt>Which of the following was not a Beatle?</qn-prompt>
+        <qn-answer>John</qn-answer>
+        <qn-answer>Paul</qn-answer>
+        <qn-answer correct>Charlie</qn-answer>
+        <qn-answer>Ringo</qn-answer>
+        <qn-answer>George</qn-answer>
+      </qn-question>
+    </qz-questions>
+
+  </quiz-maker>
+
+  <script>
+
+    describe('Declarative introspection', function() {
+
+      describe('Fixture #1', function() {
+
+        it('Should produce the correct quiz configuration', function() {
+          // Starting out with really high-level tests for now.
+          // TODO Add more thorough testing should this not prove enough.
+
+          var fixture = document.getElementById('fixture1');
+
+          // Expect that introspection should have occured.
+          expect(fixture.quiz).to.exist;
+
+          // Title should be correct.
+          expect(fixture.quiz.title).to.exist.and.to.equal('My quiz title.');
+
+          // Now let's look at the questions.
+          expect(fixture.quiz.questions).to.exist;
+          expect(fixture.quiz.questions.length).to.equal(1);
+
+          expect(fixture.quiz.questions[0]).to.deep.equal({
+            prompt: 'Which of the following was not a Beatle?',
+            answers: [
+              "John",
+              "Paul",
+              "Charlie",
+              "Ringo",
+              "George"
+            ]
+          });
+
+        });
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

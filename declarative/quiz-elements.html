@@ -1,0 +1,24 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<script>
+  Polymer({
+    is: 'qz-title',
+
+    _introspect: function() {
+      return this.innerText;
+    }
+  });
+</script>
+
+<script>
+  Polymer({
+    is: 'qz-questions',
+
+    _introspect: function() {
+      var questions = Polymer.dom(this).querySelectorAll('qn-question');
+      return Array.prototype.slice.call(questions).map(function(question) {
+        return question._introspect();
+      });
+    }
+  });
+</script>

@@ -21,6 +21,40 @@ your application.
 
 <script>
   Polymer({
-    is: 'quiz-maker'
+    is: 'quiz-maker',
+
+    properties: {
+      quiz: {
+        type: Object
+      }
+    },
+
+    attached: function() {
+      if (!this.quiz) {
+        this.quiz = this._introspect();
+      }
+    },
+
+    /**
+     * Introspects the element's Light DOM for a Quiz defined declaratively,
+     * compiles a QuizData object and returns it.
+     */
+    _introspect: function() {
+      var quiz = {};
+      var root = Polymer.dom(this);
+
+      // First, try to acertain the title.
+      var title = root.querySelector('qz-title');
+      if (title) {
+        quiz.title = title.innerText;
+      }
+
+      var questions = root.querySelector('qz-questions');
+      if (questions) {
+        quiz.questions = questions._introspect();
+      }
+
+      return quiz;
+    }
   });
 </script>

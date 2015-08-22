@@ -1,0 +1,45 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<script>
+  Polymer({
+    is: 'qn-question',
+
+    properties: {
+      type: String
+    },
+
+    _introspect: function() {
+      var question = {};
+      var root = Polymer.dom(this);
+
+      var $prompt = root.querySelector('qn-prompt');
+      if ($prompt) {
+        question.prompt = $prompt.innerHTML;
+      }
+
+      var answers = root.querySelectorAll('qn-answer');
+      question.answers = Array.prototype.slice.call(answers).map(function(answer) {
+        return answer._introspect();
+      });
+
+      return question;
+    }
+  });
+</script>
+
+
+<script>
+  Polymer({
+    is: 'qn-answer',
+
+    properties: {
+      correct: {
+        type: Boolean
+      }
+    },
+
+    _introspect: function() {
+      return this.innerHTML;
+    }
+  });
+</script>
