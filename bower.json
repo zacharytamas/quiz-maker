@@ -1,0 +1,25 @@
+{
+  "name": "quiz-maker",
+  "version": "0.0.0",
+  "homepage": "https://github.com/zacharytamas/quiz-maker",
+  "authors": [
+    "Zachary Jones <zacharytamas@gmail.com>"
+  ],
+  "description": "A declarative interactive-quiz builder library using Polymer custom elements.",
+  "keywords": [
+    "polymer",
+    "polymer-1.0",
+    "web-components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~1.1.1"
+  }
+}
