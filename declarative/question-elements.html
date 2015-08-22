@@ -1,5 +1,7 @@
 <link rel="import" href="../../polymer/polymer.html">
 
+<script src="../bower_components/lodash/lodash.min.js" charset="utf-8"></script>
+
 <script>
   Polymer({
     is: 'qn-question',
@@ -9,7 +11,11 @@
     },
 
     _introspect: function() {
-      var question = {};
+      var question = {
+        type: this.type,
+        answers: [],
+        correct: []
+      };
       var root = Polymer.dom(this);
 
       var $prompt = root.querySelector('qn-prompt');
@@ -17,9 +23,9 @@
         question.prompt = $prompt.innerHTML;
       }
 
-      var answers = root.querySelectorAll('qn-answer');
-      question.answers = Array.prototype.slice.call(answers).map(function(answer) {
-        return answer._introspect();
+      _.forEach(root.querySelectorAll('qn-answer'), function(answer, index) {
+        question.answers.push(answer._introspect());
+        if (answer.correct) question.correct.push(index);
       });
 
       return question;
