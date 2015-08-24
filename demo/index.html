@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../quiz-maker.html">
+  <link rel="import" href="../quiz-declarative.html">
+
+</head>
+<body unresolved class="fullbleed">
+
+  <quiz-maker class="fit">
+
+    <qz-title>My quiz title.</qz-title>
+
+    <qz-questions>
+      <qn-question type="multichoice">
+        <qn-prompt>Which of the following were not Beatles?</qn-prompt>
+        <qn-answer>John</qn-answer>
+        <qn-answer>Paul</qn-answer>
+        <qn-answer correct>Charlie</qn-answer>
+        <qn-answer>Ringo</qn-answer>
+        <qn-answer correct>Yoko</qn-answer>
+      </qn-question>
+    </qz-questions>
+
+  </quiz-maker>
+
+</body>
+</html>
