@@ -37,6 +37,24 @@
       question: {
         type: Object
       }
+    },
+
+    listeners: {
+      'submit.tap': '_grade'
+    },
+
+    _grade: function() {
+      var root = Polymer.dom(this.root);
+      var selected = [];
+
+      _.forEach(root.querySelectorAll('paper-checkbox'), function(checkbox, index) {
+        if (checkbox.checked) selected.push(index);
+      });
+
+      // TODO should sort or do another way.
+      var correct = _.isEqual(selected, this.question.correct);
+      // TODO show result
     }
+
   });
 </script>
