@@ -60,13 +60,38 @@ your application.
 
     properties: {
       quiz: {
-        type: Object
+        type: Object,
+        observer: '_quizChanged'
+      },
+
+      /**
+       * The current question being shown to the Learner.
+       */
+      currentQuestion: {
+        type: Object,
+        computed: '_questionForIndex(questionIndex)'
+      },
+
+      questionIndex: {
+        type: Number
       }
     },
 
     attached: function() {
       if (!this.quiz) {
         this.quiz = this._introspect();
+      }
+    },
+
+    _quizChanged: function(newValue, oldValue) {
+      if (!oldValue && newValue.questions.length) {
+        this.questionIndex = 0;
+      }
+    },
+
+    _questionForIndex: function(index) {
+      if (this.quiz) {
+        return this.quiz.questions[index];
       }
     },
 
