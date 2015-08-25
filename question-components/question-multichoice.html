@@ -1,0 +1,42 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+
+<dom-module id="question-multichoice">
+  <style>
+    :host {
+      display: block;
+    }
+
+    .answer {
+      margin: 1em 0;
+    }
+  </style>
+  <template>
+    <div class="vertical layout">
+      <h1>[[question.prompt]]</h1>
+      <div class="flex">
+        <template is="dom-repeat" items="{{question.answers}}">
+          <div class="answer"><paper-checkbox>[[item]]</paper-checkbox></div>
+        </template>
+      </div>
+      <div class="horizontal layout">
+        <paper-button id="submit">Submit Answer</paper-button>
+      </div>
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'question-multichoice',
+
+    properties: {
+      question: {
+        type: Object
+      }
+    }
+  });
+</script>
