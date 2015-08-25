@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Demo</title>
 
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -13,7 +14,7 @@
 </head>
 <body unresolved class="fullbleed">
 
-  <quiz-maker class="fit">
+  <quiz-maker class="fit" no-drawer>
 
     <qz-title>My quiz title.</qz-title>
 
@@ -25,6 +26,14 @@
         <qn-answer correct>Charlie</qn-answer>
         <qn-answer>Ringo</qn-answer>
         <qn-answer correct>Yoko</qn-answer>
+      </qn-question>
+
+      <qn-question type="multichoice">
+        <qn-prompt>What is the answer to life, the universe, and everything?</qn-prompt>
+        <qn-answer>Candy</qn-answer>
+        <qn-answer>Birds</qn-answer>
+        <qn-answer correct>42</qn-answer>
+        <qn-answer>Computers</qn-answer>
       </qn-question>
     </qz-questions>
 
