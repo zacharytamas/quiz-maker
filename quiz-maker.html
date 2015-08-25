@@ -12,6 +12,8 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
 
+<link rel="import" href="quiz-components/progress-bar.html">
+
 <!--
 An element which accepts a Quiz description via its `quiz` property or by
 declaratively describing one directly inside it when declaring it in
@@ -56,6 +58,9 @@ your application.
               exit-animation="slide-left-animation">
             </neon-animated-pages>
           </div>
+          <progress-bar
+            quiz="[[quiz]]"
+            question-index="[[questionIndex]]"></progress-bar>
         </div>
       </paper-header-panel>
     </paper-drawer-panel>

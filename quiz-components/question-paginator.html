@@ -1,0 +1,57 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<script src="../bower_components/lodash/lodash.min.js" charset="utf-8"></script>
+
+<dom-module id="question-paginator">
+  <style>
+    :host {
+      display: block;
+      text-align: center;
+    }
+
+    .page {
+      padding: 0.25em 0.5em;
+      margin-right: 1em;
+      border: 1px rgba(0, 0, 0, .56) solid;
+    }
+
+    .page[current] {
+      font-weight: bold;
+    }
+  </style>
+  <template>
+    <div class="horizontal layout">
+      <template is="dom-repeat" items="{{_range(min, max)}}">
+        <div class="page" current$="[[_isCurrent(index)]]">[[item]]</div>
+      </template>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'question-paginator',
+
+    properties: {
+      min: {
+        type: Number
+      },
+
+      max: {
+        type: Number
+      },
+
+      current: {
+        type: Number
+      }
+    },
+
+    _range: function(min, max) {
+      return _.range(min, max + 1);
+    },
+
+    _isCurrent: function(index) {
+      return index == (this.current - 1);
+    }
+  });
+</script>

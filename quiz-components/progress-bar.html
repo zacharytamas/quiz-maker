@@ -1,0 +1,45 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="question-paginator.html">
+
+<dom-module id="progress-bar">
+  <style>
+    :host {
+      display: block;
+
+      --paper-toolbar-background: var(--color-a700);
+      --paper-toolbar-color: rgba(0, 0, 0, .87);
+    }
+  </style>
+  <template>
+    <paper-toolbar>
+      <div class="flex"></div>
+      <question-paginator class="flex"
+        min="1"
+        max="[[quiz.questions.length]]"
+        current="_currentQuestionNumber(questionIndex)"></question-paginator>
+      <div class="flex"></div>
+    </paper-toolbar>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'progress-bar',
+
+    properties: {
+      quiz: {
+        type: Object
+      },
+
+      questionIndex: {
+        type: Number
+      }
+    },
+
+    _currentQuestionNumber: function(questionIndex) {
+      return questionIndex + 1;
+    }
+
+  });
+</script>
