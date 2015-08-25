@@ -1,0 +1,42 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="question-inflator">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'question-inflator',
+
+    properties: {
+      question: {
+        type: Object,
+        observer: '_inflate'
+      }
+    },
+
+    /**
+     * Manually inflates a Question object into a custom element for its type.
+     * This is dynamic and can't be done declaratively.
+     */
+    _inflate: function(question, oldValue) {
+      var elementName = 'question-' + question.type;
+      this.importHref(this.resolveUrl(elementName + '.html'), function(e) {
+        var el = document.createElement(elementName);
+        el.question = question;
+        // TODO Probably need to manually subscribe to some events on this puppy.
+        Polymer.dom(this.root).appendChild(el);
+      }, function(e) {
+        // TODO Show some kind of error.
+      });
+    }
+
+  });
+</script>

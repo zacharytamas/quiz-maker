@@ -14,6 +14,8 @@
 
 <link rel="import" href="quiz-components/progress-bar.html">
 
+<link rel="import" href="question-components/question-inflator.html">
+
 <!--
 An element which accepts a Quiz description via its `quiz` property or by
 declaratively describing one directly inside it when declaring it in
@@ -56,6 +58,12 @@ your application.
               selected="[[questionIndex]]"
               entry-animation="slide-from-right-animation"
               exit-animation="slide-left-animation">
+
+              <template is="dom-repeat" items="{{quiz.questions}}">
+                <neon-animatable>
+                  <question-inflator question="[[item]]"></question-inflator>
+                </neon-animatable>
+              </template>
             </neon-animated-pages>
           </div>
           <progress-bar
