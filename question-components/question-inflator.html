@@ -28,6 +28,7 @@
      */
     _inflate: function(question, oldValue) {
       var elementName = 'question-' + question.type;
+
       this.importHref(this.resolveUrl(elementName + '.html'), function(e) {
         var el = document.createElement(elementName);
         el.question = question;
